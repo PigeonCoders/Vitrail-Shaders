@@ -501,7 +501,7 @@ public final class PackProgram {
 
 			DimensionSet dimensions = DimensionSet.discover(source);
 			ProgramResolver resolver = ProgramResolver.resolve(ProgramSet.enumerate(source, dimensions),
-					dimensions);
+					dimensions, properties.switchedOff(settings.globalDefines(options), options));
 
 			Map<String, AlphaTest> overrides = properties.alphaTests(settings.globalDefines(options));
 			// The pack's own switch comes before its programs: the reference nulls its whole
@@ -635,7 +635,7 @@ public final class PackProgram {
 
 			DimensionSet dimensions = DimensionSet.discover(source);
 			ProgramResolver resolver = ProgramResolver.resolve(ProgramSet.enumerate(source, dimensions),
-					dimensions);
+					dimensions, properties.switchedOff(settings.globalDefines(options), options));
 
 			Map<String, AlphaTest> overrides = properties.alphaTests(settings.globalDefines(options));
 
@@ -770,7 +770,7 @@ public final class PackProgram {
 
 			DimensionSet dimensions = DimensionSet.discover(source);
 			ProgramResolver resolver = ProgramResolver.resolve(ProgramSet.enumerate(source, dimensions),
-					dimensions);
+					dimensions, properties.switchedOff(settings.globalDefines(options), options));
 
 			Map<String, Map<ProgramStage, ExpandedUnit>> expanded = new LinkedHashMap<>();
 			Map<String, Loaded> translated = new LinkedHashMap<>();
@@ -839,7 +839,7 @@ public final class PackProgram {
 
 			DimensionSet dimensions = DimensionSet.discover(source);
 			ProgramResolver resolver = ProgramResolver.resolve(ProgramSet.enumerate(source, dimensions),
-					dimensions);
+					dimensions, properties.switchedOff(settings.globalDefines(options), options));
 
 			Optional<ProgramResolver.Resolution> resolution = resolver.lookup(place, CLOUD_PROGRAM);
 			if (resolution.isEmpty()) {
@@ -942,7 +942,7 @@ public final class PackProgram {
 
 			DimensionSet dimensions = DimensionSet.discover(source);
 			ProgramResolver resolver = ProgramResolver.resolve(ProgramSet.enumerate(source, dimensions),
-					dimensions);
+					dimensions, properties.switchedOff(settings.globalDefines(options), options));
 
 			Map<String, AlphaTest> overrides = properties.alphaTests(settings.globalDefines(options));
 
@@ -1115,7 +1115,8 @@ public final class PackProgram {
 
 			DimensionSet dimensions = DimensionSet.discover(source);
 			ProgramSet programs = ProgramSet.enumerate(source, dimensions);
-			ChainPlan chain = ChainPlan.of(targets, ProgramResolver.resolve(programs, dimensions),
+			ChainPlan chain = ChainPlan.of(targets, ProgramResolver.resolve(programs, dimensions,
+					properties.switchedOff(settings.globalDefines(options), options)),
 					refusals, families);
 
 			Map<String, Loaded> loaded = new LinkedHashMap<>();
