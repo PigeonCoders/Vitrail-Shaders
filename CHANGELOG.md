@@ -11,6 +11,19 @@ publishing a jar named after one thing and built from another.
 Everything is a pre-release while the version stays under `1.0.0`. Nothing here is a promise about
 what the next one holds.
 
+## Unreleased
+
+### Fixed
+
+- **A pack switching off one of its own programs is obeyed for the world, not only for its
+  full-screen passes.** A pack turns individual programs on and off from its settings, and the ones
+  that draw the world went on being drawn whatever the setting said. Where the pack offers a
+  plainer program behind the one it switched off, that plainer one now draws instead, which is what
+  the pack is asking for: Bliss draws its translucent entities and blocks through its ordinary
+  entity and block programs until you turn its translucent entities setting on. Where it offers
+  none, nothing is drawn: Bliss and BSL stop building a shadow map in the Nether, and Bliss in the
+  End as well, which is what both of them ask for there.
+
 ## 0.8.0-beta
 
 ### Added
